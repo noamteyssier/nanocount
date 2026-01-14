@@ -2,6 +2,8 @@
 
 A CLI to map single-end reads to dual guide protospacers.
 
+Built originally to map long-read nanopore sequences to dual guide protospacers in a error-tolerant manner (mismatch + indel).
+
 ## Installation
 
 Quick installation with `cargo`:
@@ -42,6 +44,10 @@ The expected structure is:
 
 `nanocount` will count the number of occurences of each protospacer and the number of occurences of each pair of protospacers.
 
+```bash
+nanocount -p my_protospacers.tsv <input>.vbq
+```
+
 ### Protospacer input
 
 The protospacer input should be a TSV (no header) with four columns:
@@ -69,4 +75,17 @@ The output will be a TSV (with header) with the following columns:
 6. count_g2: Number of sequences with Protospacer2
 7. count_paired: Count of sequences with both Protospacers
 8. count_unpaired: Count of sequences with only one of the pairs
+```
+
+### Configuration
+
+`nanocount` uses [`sassy`](https://github.com/ragnargrootkoerkamp/sassy) as the alignment engine.
+
+You can control your match sensitivity with the `-k` flag, which specifies the maximum alignment score for a putative match.
+
+> Note: Only the **protospacer sequences** are being compared. This does not make any comparison on constant sequences before, between, or after the protospacers.
+
+```bash
+# Allow a maximum of 3 mismatches/indels
+nanocount -k 3 -p my_protospacers.tsv <input>.vbq
 ```
