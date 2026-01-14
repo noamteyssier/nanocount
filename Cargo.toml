@@ -2,6 +2,12 @@
 name = "nanocount"
 version = "0.1.0"
 edition = "2024"
+license = "MIT"
+description = "A dual-guide protospacer counter for long-read nanopore data"
+repository = "https://github.com/noamteyssier/nanocount"
+readme = "README.md"
+categories = ["science::bioinformatics", "command-line-utilities"]
+keywords = ["long-read", "nanopore", "grep", "crispr", "alignment"]
 
 [dependencies]
 anyhow = "1.0.100"
