@@ -3,7 +3,7 @@ use std::{ops::AddAssign, path::Path, sync::Arc};
 use anyhow::Result;
 use binseq::ParallelProcessor;
 use parking_lot::Mutex;
-use sassy::{Searcher, profiles::Dna};
+use sassy::{Searcher, profiles::Iupac};
 use serde::Serialize;
 
 use crate::guides::Guides;
@@ -70,7 +70,7 @@ pub struct PatternProcessor {
     k: usize,
 
     /// Searcher for the guides (reusable buffer)
-    searcher: Searcher<Dna>,
+    searcher: Searcher<Iupac>,
 
     /// thread-local stats
     tl_counts: Vec<GuideStats>,
